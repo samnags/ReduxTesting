@@ -21,4 +21,21 @@ describe('CommentBox', () => {
   it ('has a button', () => {
     expect(component.find('button')).to.exist;
   })
+
+  describe('Entering some text', () => {
+    beforeEach(() => {
+      // we're simulating a change event
+      component.find('textarea').simulate('change', 'new comment')
+    })
+    it ('shows that in the text area', () => {
+      expect(component.find('textarea')).to.have.value('new comment')
+    })
+
+    it('when submitted, clears the input', () => {
+      component.simulate('submit');
+      expect(component.find('textarea')).to.have.value('');
+
+    })
+  })
+
 })
